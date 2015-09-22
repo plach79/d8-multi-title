@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Contains the "Multi Title Example" module hook implementations.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function multi_title_entity_base_field_info_alter(array &$fields, EntityTypeInterface $entity_type) {
+  /** @var Drupal\Core\Field\BaseFieldDefinition[] $fields */
+  if ($entity_type->id() == 'node') {
+    $fields['title']->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
+  }
+}

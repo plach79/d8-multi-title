@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Contains the "Multi Title Example" installation hook implementations.
+ */
+
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+
+/**
+ * Implements hook_update_N().
+ */
+function multi_title_update_8001() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  /** @var \Drupal\Core\Field\BaseFieldDefinition $definition */
+  $definition = $manager->getFieldStorageDefinition('title', 'node');
+  $definition->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
+  $manager->updateFieldStorageDefinition($definition);
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function multi_title_update_8002() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  /** @var \Drupal\Core\Field\BaseFieldDefinition $definition */
+  $definition = $manager->getFieldStorageDefinition('title', 'node');
+  $definition->setCardinality(1);
+  $manager->updateFieldStorageDefinition($definition);
+}
